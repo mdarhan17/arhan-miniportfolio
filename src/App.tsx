@@ -125,16 +125,16 @@ function App() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
-      <div className="animated-bg"></div>
+      <div className="force-gpu min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+      <div className="animated-bg force-gpu"></div>
 
-      <div className="floating-orbs">
+      <div className="floating-orbs force-gpu">
         <div className="orb orb-1"></div>
         <div className="orb orb-2"></div>
         <div className="orb orb-3"></div>
       </div>
 
-      <div className="particles-container">
+      <div className="particles-container force-gpu">
         {[...Array(20)].map((_, i) => (
           <div key={i} className="particle" style={{ animationDelay: `${i * 0.3}s` }}></div>
         ))}
