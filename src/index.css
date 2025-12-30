@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===============================
+   iOS WHITE FLASH & SMOOTH SCROLL FIX
+   =============================== */
+
+html, body {
+  background-color: #020617; /* dark fallback */
+  overscroll-behavior: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* iOS-only animation light mode */
+@supports (-webkit-touch-callout: none) {
+  .floating-orbs,
+  .particles-container {
+    opacity: 0.6;
+    filter: none;
+  }
+}

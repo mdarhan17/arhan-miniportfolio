@@ -182,19 +182,18 @@
 
 .animated-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background:
     radial-gradient(circle 400px at 20% 30%, rgba(6, 182, 212, 0.15), transparent 50%),
     radial-gradient(circle 300px at 80% 70%, rgba(168, 85, 247, 0.15), transparent 50%),
     radial-gradient(circle 350px at 60% 20%, rgba(99, 102, 241, 0.15), transparent 50%),
     linear-gradient(135deg, #0f172a 0%, #1e3a8a 25%, #1e1b4b 50%, #0f172a 75%, #1a1a2e 100%);
-  background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
-  animation: mesh-gradient 20s ease infinite;
-  filter: blur(40px);
+  background-size: 200% 200%;
+  animation: mesh-gradient 25s linear infinite;
+  filter: blur(25px); /* 🔻 reduced */
+  transform: translateZ(0);
 }
+
 
 .floating-orbs {
   position: absolute;
@@ -207,10 +206,11 @@
 }
 
 .orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(40px);
+  transform: translateZ(0);
+  will-change: transform;
 }
+
 
 .orb-1 {
   width: 300px;
@@ -332,7 +332,8 @@
     0 0 40px rgba(99, 102, 241, 0.5),
     0 20px 60px rgba(0, 0, 0, 0.5),
     inset 0 1px 20px rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .profile-image {
@@ -390,7 +391,8 @@
   opacity: 0;
   animation: fade-slide-in 0.7s ease forwards;
   background: rgba(15, 23, 42, 0.5);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.2),
@@ -522,7 +524,8 @@
   font-weight: 600;
   padding: 2.5rem 2rem;
   background: rgba(15, 23, 42, 0.5);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
   animation: fade-in-up 1s ease forwards 1s;
@@ -594,5 +597,11 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .particles-container {
+    display: none;
   }
 }
