@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Youtube, Facebook, Linkedin, Send, MessageSquare, Globe, Twitter, Mail, Instagram, Sheet, Sparkles } from 'lucide-react';
+import { Youtube, Facebook, Linkedin, Send, MessageCircle, Globe, Twitter, Mail, Instagram, Sheet, Sparkles } from 'lucide-react';
 import './animations.css';
 import profileImg from './assets/images/img_3058.jpg';
 
 
-interface SocialLink {
+interface SocialLink { 
   name: string;
   icon: JSX.Element;
   deepLink: string;
@@ -33,11 +33,11 @@ function App() {
       isPrimary: true
     },
     {
-      name: 'Portfolio Website',
-      icon: <Globe className="w-6 h-6" />,
-      deepLink: 'https://yourportfolio.com',
-      fallbackUrl: 'https://yourportfolio.com',
-      color: 'from-purple-600 to-pink-500'
+    name: 'Portfolio Website',
+    icon: <Globe className="w-6 h-6" />,
+    deepLink: 'https://heeeeeeeey.com',
+    fallbackUrl: 'https://heeeeeeeey.com',
+    color: 'from-amber-400 via-yellow-500 to-amber-600'
     },
     {
     name: 'Gmail',
@@ -83,7 +83,7 @@ function App() {
     },
     {
     name: 'WhatsApp',
-    icon: <MessageSquare className="w-6 h-6" />,
+    icon: <MessageCircle className="w-6 h-6" />,
     deepLink: 'whatsapp://send?phone=919731115171',
     fallbackUrl: 'https://wa.me/919731115171',
     color: 'from-green-600 to-green-500'
