@@ -154,10 +154,31 @@ function App() {
           </div>
 
           <h1 className="profile-name">Mohammed Arhan</h1>
-          <p className="profile-bio">
-            MCA Graduate | Full Stack Developer | Creative Technologist
+          <p className="profile-bio text-white/85 text-sm leading-relaxed">
+          Hi, I’m <span className="text-cyan-400 font-semibold">Mohammed Arhan</span>, an
+          <span className="text-purple-400 font-semibold"> MCA graduate</span> and
+          <span className="text-blue-400 font-semibold"> Full Stack Developer</span> with
+          <span className="text-yellow-400 font-semibold"> 5+ years of experience</span> in
+          <span className="text-indigo-400 font-semibold"> coding</span>,
+          <span className="text-indigo-400 font-semibold"> application development</span>, and
+          <span className="text-indigo-400 font-semibold"> end-to-end project delivery</span>.
           </p>
-          <p className="profile-tagline">Building modern web experiences</p>
+           <p className="profile-tagline text-white/70 text-sm mt-2 leading-relaxed">
+          I also work in <span className="text-pink-400 font-semibold">content creation</span>,
+        <span className="text-green-400 font-semibold"> creative writing</span>, and
+        <span className="text-orange-400 font-semibold"> digital storytelling</span>.
+         I’m <span className="text-yellow-400 font-semibold"> open to managing social media profiles</span>,
+          handling <span className="text-blue-400 font-semibold"> brand collaborations</span>,
+          <span className="text-purple-400 font-semibold"> SEO & growth strategies</span>, and
+         <span className="text-cyan-400 font-semibold"> content planning</span> across platforms like
+         <span className="text-red-400 font-semibold"> YouTube</span> and
+          <span className="text-pink-400 font-semibold"> Instagram</span>.
+           Interested in working together?
+          <span className="text-cyan-400 font-semibold"> Connect below.</span>
+          </p>
+
+
+          <p className="profile-tagline">Delivering Technology-Driven Solutions and Managing Digital Growth</p>
         </div>
 
         <div className="links-container">
