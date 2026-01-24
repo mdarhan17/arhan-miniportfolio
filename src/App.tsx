@@ -35,8 +35,8 @@ function App() {
     {
     name: 'Portfolio Website',
     icon: <Globe className="w-6 h-6" />,
-    deepLink: 'https://arhanwebsite.vercel.app',
-    fallbackUrl: 'https://arhanwebsite.vercel.app',
+    deepLink: 'https://mohammedarhan.vercel.app',
+    fallbackUrl: 'https://mohammedarhan.vercel.app',
     color: 'from-amber-400 via-yellow-500 to-amber-600'
     },
     {
