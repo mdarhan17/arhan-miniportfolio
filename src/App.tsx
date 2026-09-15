@@ -1,16 +1,39 @@
-import { useState, useEffect } from 'react';
-import { Youtube, Facebook, Linkedin, Send, MessageCircle, Globe, Twitter, Mail, Instagram, Sheet, Sparkles } from 'lucide-react';
-import './animations.css';
-import profileImg from './assets/images/img_3058.jpg';
+import { useEffect, useMemo, useState } from "react";
+import {
+  Youtube,
+  Facebook,
+  Linkedin,
+  Send,
+  MessageCircle,
+  Globe,
+  Twitter,
+  Mail,
+  Instagram,
+  Sparkles,
+  FileText,
+  Code2,
+  Briefcase,
+  Rocket,
+  ExternalLink,
+} from "lucide-react";
 
+import "./animations.css";
+import profileImg from "./assets/images/img_3058.jpg";
 
-interface SocialLink { 
+interface SocialLink {
   name: string;
+  subtitle: string;
   icon: JSX.Element;
-  deepLink: string;
+  deepLink?: string;
   fallbackUrl: string;
-  color: string;
+  gradient: string;
   isPrimary?: boolean;
+}
+
+interface StatCard {
+  icon: JSX.Element;
+  value: string;
+  label: string;
 }
 
 function App() {
@@ -19,191 +42,279 @@ function App() {
 
   useEffect(() => {
     setIsLoaded(true);
-    const footerTimer = setTimeout(() => setFooterLoaded(true), 1000);
-    return () => clearTimeout(footerTimer);
+
+    const footerTimer = window.setTimeout(() => {
+      setFooterLoaded(true);
+    }, 900);
+
+    return () => window.clearTimeout(footerTimer);
   }, []);
 
-  const socialLinks: SocialLink[] = [
-    {
-      name: 'YouTube',
-      icon: <Youtube className="w-6 h-6" />,
-      deepLink: 'youtube://www.youtube.com/@MdArhan',
-      fallbackUrl: 'https://www.youtube.com/@MdArhan',
-      color: 'from-red-600 to-red-500',
-      isPrimary: true
-    },
-    {
-    name: 'Portfolio Website',
-    icon: <Globe className="w-6 h-6" />,
-    deepLink: 'https://mohammedarhan.vercel.app',
-    fallbackUrl: 'https://mohammedarhan.vercel.app',
-    color: 'from-amber-400 via-yellow-500 to-amber-600'
-    },
-    {
-    name: 'Gmail',
-    icon: <Mail className="w-6 h-6" />,
-    deepLink: 'googlegmail://co?to=mdarhanofficial@gmail.com',
-    fallbackUrl: 'https://mail.google.com/mail/?view=cm&to=mdarhanofficial@gmail.com',
-    color: 'from-red-500 to-red-400'
-    },
-    {
-    name: 'Instagram',
-    icon: <Instagram className="w-6 h-6" />,
-    deepLink: 'instagram://user?username=arhanyay',
-    fallbackUrl: 'https://www.instagram.com/arhanyay/',
-    color: 'from-pink-600 to-purple-500'
-    },
-    {
-    name: 'LinkedIn',
-    icon: <Linkedin className="w-6 h-6" />,
-    deepLink: 'linkedin://in/mdarhan',
-    fallbackUrl: 'https://www.linkedin.com/in/mdarhan',
-    color: 'from-blue-700 to-blue-600'
-    },
-    {
-    name: 'Snapchat',
-    icon: <Sparkles className="w-6 h-6" />,
-    deepLink: 'snapchat://add/arhanyay',
-    fallbackUrl: 'https://www.snapchat.com/add/arhanyay',
-    color: 'from-yellow-400 to-yellow-300'
-    },
-    {
-    name: 'Facebook',
-    icon: <Facebook className="w-6 h-6" />,
-    deepLink: 'fb://profile/MdArhan',
-    fallbackUrl: 'https://www.facebook.com/MdArhan',
-    color: 'from-blue-600 to-blue-500'
-    },
-    {
-    name: 'Telegram',
-    icon: <Send className="w-6 h-6" />,
-    deepLink: 'tg://resolve?domain=arhanyay',
-    fallbackUrl: 'https://t.me/arhanyay',
-    color: 'from-sky-500 to-sky-400'
-    },
-    {
-    name: 'WhatsApp',
-    icon: <MessageCircle className="w-6 h-6" />,
-    deepLink: 'whatsapp://send?phone=919731115171',
-    fallbackUrl: 'https://wa.me/919731115171',
-    color: 'from-green-600 to-green-500'
-    },
-    {
-     name: 'X (Twitter)',
-     icon: <Twitter className="w-6 h-6" />,
-     deepLink: 'twitter://user?screen_name=arhanyay',
-     fallbackUrl: 'https://x.com/arhanyay',
-     color: 'from-slate-800 to-slate-700'
-     },
-    {
-  name: 'Contact Form',
-  icon: <Sheet className="w-6 h-6" />,
-  deepLink: '',
-  fallbackUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdOoXW_J2KwrB-roS1ywW6DXsCdWAR8Z_xVpPjIHoFWptyzQQ/viewform?usp=dialog',
-  color: 'from-purple-600 to-indigo-500'
-}
+  const socialLinks: SocialLink[] = useMemo(
+    () => [
+      {
+        name: "YouTube",
+        subtitle: "Videos & creative content",
+        icon: <Youtube className="w-6 h-6" />,
+        deepLink: "youtube://www.youtube.com/@MdArhan",
+        fallbackUrl: "https://www.youtube.com/@MdArhan",
+        gradient: "from-red-600 via-red-500 to-orange-500",
+        isPrimary: true,
+      },
+      {
+        name: "Portfolio Website",
+        subtitle: "Projects, work & profile",
+        icon: <Globe className="w-6 h-6" />,
+        fallbackUrl: "https://mohammedarhan.vercel.app",
+        gradient: "from-amber-400 via-yellow-500 to-amber-600",
+        isPrimary: true,
+      },
+      {
+        name: "Gmail",
+        subtitle: "Send a professional email",
+        icon: <Mail className="w-6 h-6" />,
+        deepLink: "googlegmail://co?to=mdarhanofficial@gmail.com",
+        fallbackUrl:
+          "https://mail.google.com/mail/?view=cm&to=mdarhanofficial@gmail.com",
+        gradient: "from-red-500 via-rose-500 to-pink-500",
+      },
+      {
+        name: "Instagram",
+        subtitle: "Reels, updates & stories",
+        icon: <Instagram className="w-6 h-6" />,
+        deepLink: "instagram://user?username=arhanyay",
+        fallbackUrl: "https://www.instagram.com/arhanyay/",
+        gradient: "from-pink-600 via-purple-500 to-orange-400",
+      },
+      {
+        name: "LinkedIn",
+        subtitle: "Professional profile",
+        icon: <Linkedin className="w-6 h-6" />,
+        deepLink: "linkedin://in/mdarhan",
+        fallbackUrl: "https://www.linkedin.com/in/mdarhan",
+        gradient: "from-blue-700 via-blue-600 to-cyan-500",
+      },
+      {
+        name: "Snapchat",
+        subtitle: "Quick stories & updates",
+        icon: <Sparkles className="w-6 h-6" />,
+        deepLink: "snapchat://add/arhanyay",
+        fallbackUrl: "https://www.snapchat.com/add/arhanyay",
+        gradient: "from-yellow-300 via-yellow-400 to-amber-400",
+      },
+      {
+        name: "Facebook",
+        subtitle: "Community & updates",
+        icon: <Facebook className="w-6 h-6" />,
+        deepLink: "fb://profile/MdArhan",
+        fallbackUrl: "https://www.facebook.com/MdArhan",
+        gradient: "from-blue-600 via-blue-500 to-sky-400",
+      },
+      {
+        name: "Telegram",
+        subtitle: "Direct chat channel",
+        icon: <Send className="w-6 h-6" />,
+        deepLink: "tg://resolve?domain=arhanyay",
+        fallbackUrl: "https://t.me/arhanyay",
+        gradient: "from-sky-500 via-cyan-400 to-blue-500",
+      },
+      {
+        name: "WhatsApp",
+        subtitle: "Fast direct contact",
+        icon: <MessageCircle className="w-6 h-6" />,
+        deepLink: "whatsapp://send?phone=919731115171",
+        fallbackUrl: "https://wa.me/919731115171",
+        gradient: "from-green-600 via-emerald-500 to-lime-500",
+      },
+      {
+        name: "X / Twitter",
+        subtitle: "Thoughts & latest updates",
+        icon: <Twitter className="w-6 h-6" />,
+        deepLink: "twitter://user?screen_name=arhanyay",
+        fallbackUrl: "https://x.com/arhanyay",
+        gradient: "from-slate-900 via-slate-800 to-zinc-700",
+      },
+      {
+        name: "Contact Form",
+        subtitle: "Business / collaboration enquiry",
+        icon: <FileText className="w-6 h-6" />,
+        fallbackUrl:
+          "https://docs.google.com/forms/d/e/1FAIpQLSdOoXW_J2KwrB-roS1ywW6DXsCdWAR8Z_xVpPjIHoFWptyzQQ/viewform?usp=dialog",
+        gradient: "from-purple-600 via-indigo-500 to-blue-500",
+      },
+    ],
+    []
+  );
 
-
+  const stats: StatCard[] = [
+    {
+      icon: <Code2 className="w-5 h-5" />,
+      value: "5+",
+      label: "Years Experience",
+    },
+    {
+      icon: <Briefcase className="w-5 h-5" />,
+      value: "Full Stack",
+      label: "Developer",
+    },
+    {
+      icon: <Rocket className="w-5 h-5" />,
+      value: "Digital",
+      label: "Growth & Content",
+    },
   ];
 
- const handleLinkClick = (link: SocialLink) => {
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isMobileDevice = () => {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  };
 
-  if (isMobile && link.deepLink) {
-    // 📱 Mobile → try app
-    window.location.href = link.deepLink;
+  const openSocialLink = (link: SocialLink) => {
+    const mobile = isMobileDevice();
 
-    // ⏱️ fallback to web
-    setTimeout(() => {
-      window.location.href = link.fallbackUrl;
-    }, 1200);
-  } else {
-    // 💻 Desktop → web
-    window.open(link.fallbackUrl, '_blank');
-  }
-};
+    if (mobile && link.deepLink) {
+      const startTime = Date.now();
 
+      window.location.href = link.deepLink;
+
+      window.setTimeout(() => {
+        const endTime = Date.now();
+
+        if (endTime - startTime < 1800) {
+          window.location.href = link.fallbackUrl;
+        }
+      }, 1200);
+
+      return;
+    }
+
+    window.open(link.fallbackUrl, "_blank", "noopener,noreferrer");
+  };
 
   return (
-      <div className="force-gpu min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
-      <div className="animated-bg force-gpu"></div>
+    <main className="app-shell force-gpu">
+      <div className="animated-bg force-gpu" />
 
-      <div className="floating-orbs force-gpu">
-        <div className="orb orb-1"></div>
-        <div className="orb orb-2"></div>
-        <div className="orb orb-3"></div>
+      <div className="noise-layer" />
+
+      <div className="floating-orbs force-gpu" aria-hidden="true">
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
+        <div className="orb orb-4" />
       </div>
 
-      <div className="particles-container force-gpu">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className="particle" style={{ animationDelay: `${i * 0.3}s` }}></div>
+      <div className="particles-container force-gpu" aria-hidden="true">
+        {Array.from({ length: 28 }).map((_, index) => (
+          <span
+            key={index}
+            className="particle"
+            style={{ animationDelay: `${index * 0.23}s` }}
+          />
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-12 max-w-2xl">
-        <div className={`profile-section ${isLoaded ? 'loaded' : ''}`}>
+      <section className="main-container">
+        <div className={`profile-section ${isLoaded ? "loaded" : ""}`}>
+          <div className="top-badge">
+            <span className="badge-dot" />
+            Available for projects, collaborations & digital growth
+          </div>
+
           <div className="profile-image-wrapper">
-            <div className="profile-glow"></div>
+            <div className="profile-glow" />
+            <div className="profile-ring" />
             <div className="profile-image-container">
               <img
                 src={profileImg}
                 alt="Mohammed Arhan"
                 className="profile-image"
+                loading="eager"
               />
             </div>
           </div>
 
           <h1 className="profile-name">Mohammed Arhan</h1>
-          <p className="profile-bio text-white/85 text-sm leading-relaxed">
-          Hi, I’m <span className="text-cyan-400 font-semibold">Mohammed Arhan</span>, an
-          <span className="text-purple-400 font-semibold"> MCA graduate</span> and
-          <span className="text-blue-400 font-semibold"> Full Stack Developer</span> with
-          <span className="text-yellow-400 font-semibold"> 5+ years of experience</span> in
-          <span className="text-indigo-400 font-semibold"> coding</span>,
-          <span className="text-indigo-400 font-semibold"> application development</span>, and
-          <span className="text-indigo-400 font-semibold"> end-to-end project delivery</span>.
-          </p>
-           <p className="profile-tagline text-white/70 text-sm mt-2 leading-relaxed">
-          I also work in <span className="text-pink-400 font-semibold">content creation</span>,
-        <span className="text-green-400 font-semibold"> creative writing</span>, and
-        <span className="text-orange-400 font-semibold"> digital storytelling</span>.
-         I’m <span className="text-yellow-400 font-semibold"> open to managing social media profiles</span>,
-          handling <span className="text-blue-400 font-semibold"> brand collaborations</span>,
-          <span className="text-purple-400 font-semibold"> SEO & growth strategies</span>, and
-         <span className="text-cyan-400 font-semibold"> content planning</span> across platforms like
-         <span className="text-red-400 font-semibold"> YouTube</span> and
-          <span className="text-pink-400 font-semibold"> Instagram</span>.
-           Interested in working together?
-          <span className="text-cyan-400 font-semibold"> Connect below.</span>
+
+          <p className="profile-role">
+            Full Stack Developer · Content Creator · Digital Growth Strategist
           </p>
 
-          <p className="profile-tagline">Delivering Technology-Driven Solutions and Managing Digital Growth</p>
+          <p className="profile-bio">
+            Hi, I’m{" "}
+            <span className="text-cyan-300 font-semibold">
+              Mohammed Arhan
+            </span>
+            , an{" "}
+            <span className="text-purple-300 font-semibold">MCA graduate</span>{" "}
+            and{" "}
+            <span className="text-blue-300 font-semibold">
+              Full Stack Developer
+            </span>{" "}
+            with{" "}
+            <span className="text-yellow-300 font-semibold">
+              5+ years of experience
+            </span>{" "}
+            in coding, application development, project delivery, content
+            creation, creative writing, digital storytelling, SEO, brand
+            collaborations, and social media growth.
+          </p>
+
+          <div className="stats-grid">
+            {stats.map((item) => (
+              <div key={item.label} className="stat-card">
+                <div className="stat-icon">{item.icon}</div>
+                <div>
+                  <h3>{item.value}</h3>
+                  <p>{item.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="profile-tagline">
+            Delivering technology-driven solutions and managing digital growth.
+          </p>
         </div>
 
-        <div className="links-container">
+        <div className="links-container" aria-label="Social links">
           {socialLinks.map((link, index) => (
             <button
               key={link.name}
-              onClick={() => handleLinkClick(link)}
-              className={`social-button ${isLoaded ? 'loaded' : ''} ${link.isPrimary ? 'primary' : ''}`}
-              style={{ animationDelay: `${index * 0.08}s` }}
+              type="button"
+              onClick={() => openSocialLink(link)}
+              className={`social-button ${isLoaded ? "loaded" : ""} ${
+                link.isPrimary ? "primary" : ""
+              }`}
+              style={{ animationDelay: `${index * 0.07}s` }}
+              aria-label={`Open ${link.name}`}
             >
-              <div className={`social-button-bg bg-gradient-to-r ${link.color}`}></div>
-              <div className={`social-button-glow bg-gradient-to-r ${link.color}`}></div>
+              <div className={`social-button-bg bg-gradient-to-r ${link.gradient}`} />
+              <div
+                className={`social-button-glow bg-gradient-to-r ${link.gradient}`}
+              />
+
               <div className="social-button-content">
                 <span className="social-button-icon">{link.icon}</span>
-                <span className="social-button-text">{link.name}</span>
+
+                <span className="social-button-copy">
+                  <span className="social-button-text">{link.name}</span>
+                  <span className="social-button-subtitle">{link.subtitle}</span>
+                </span>
+
+                <span className="social-button-arrow">
+                  <ExternalLink className="w-5 h-5" />
+                </span>
               </div>
             </button>
           ))}
         </div>
 
-        <footer className={`footer-text ${footerLoaded ? 'loaded' : ''}`}>
-          Let's connect, collaborate, and create impact
-          <div className={`footer-underline ${footerLoaded ? 'loaded' : ''}`}></div>
+        <footer className={`footer-text ${footerLoaded ? "loaded" : ""}`}>
+          Let’s connect, collaborate, and create impact.
+          <div className={`footer-underline ${footerLoaded ? "loaded" : ""}`} />
         </footer>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
