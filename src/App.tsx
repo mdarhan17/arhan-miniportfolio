@@ -124,7 +124,7 @@ function App() {
 
       icon: <Code2 className="w-5 h-5" />,
 
-      value: "5+",
+      value: "6+",
 
       label: "Years Experience",
 
